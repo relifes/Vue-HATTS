@@ -1,30 +1,19 @@
 <template>
   <div class="container" :class="{ 'sign-up-mode': signUpMode }">
-    <!-- Login -->
+    <!-- form表单容器 -->
     <div class="forms-container">
       <div class="signin-signup">
-        <el-form label-width="100px" class="form sign-in-form">
-          <el-form-item label="邮箱" prop="email">
-            <el-input placeholder="Enter Email..."></el-input>
-          </el-form-item>
-          <el-form-item label="密码" prop="password">
-            <el-input
-              type="password"
-              placeholder="Enter PassWord..."
-            ></el-input>
-          </el-form-item>
+        <!-- 登录 -->
+        <LoginForm :loginUser="loginUser" :rules="rules" />
 
-          <el-form-item>
-            <el-button type="primary" class="submit-btn">提交</el-button>
-          </el-form-item>
-          <!-- 找回密码 -->
-          <div class="tiparea">
-            <p>忘记密码？ <a href="/">立即找回</a></p>
-          </div>
-        </el-form>
+        <!-- 注册 -->
+        <RegisterForm
+          :registerUser="registerUser"
+          :registerRules="registerRules"
+        />
       </div>
     </div>
-
+    <!-- 左右切换动画 -->
     <div class="panels-container">
       <div class="panel left-panel">
         <div class="content">
@@ -54,13 +43,26 @@
 
 <script lang="ts">
 import { ref, getCurrentInstance } from "vue";
+import { loginUser, rules } from "@/utils/loginVailDator";
+import { registerUser, registerRules } from "../utils/registerValidators";
+import LoginForm from "@/components/loginForm.vue";
+import RegisterForm from "@/components/RegisterForm.vue";
+
 export default {
   name: "LoginRegister",
-  components: {},
+  components: { LoginForm, RegisterForm },
   setup() {
-    // const { ctx } = getCurrentInstance();
+    // @ts-ignore
+    const { ctx } = getCurrentInstance();
     const signUpMode = ref<boolean>(false);
-    return { signUpMode };
+
+    return {
+      signUpMode,
+      loginUser,
+      rules,
+      registerUser,
+      registerRules,
+    };
   },
 };
 </script>
@@ -84,7 +86,7 @@ export default {
 
 .signin-signup {
   position: absolute;
-  top: 40%;
+  top: 50%;
   transform: translate(-50%, -50%);
   left: 75%;
   width: 40%;
@@ -399,8 +401,6 @@ export default {
     left: 50%;
   }
 }
-
-/* 控制login & register显示 */
 form {
   padding: 0rem 5rem;
   transition: all 0.2s 0.7s;
@@ -410,24 +410,11 @@ form {
 form.sign-in-form {
   z-index: 2;
 }
-
 form.sign-up-form {
   opacity: 0;
   z-index: 1;
 }
-
-
-/* register */
-
-.registerForm {
-  margin-top: 20px;
-  background-color: #fff;
-  padding: 20px 40px 20px 20px;
-  border-radius: 5px;
-  box-shadow: 0px 5px 10px #cccc;
-}
-
-.submit-btn {
+.submit_btn {
   width: 100%;
 }
 </style>>
