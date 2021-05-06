@@ -1,5 +1,30 @@
 <template>
   <div class="container" :class="{ 'sign-up-mode': signUpMode }">
+    <!-- Login -->
+    <div class="forms-container">
+      <div class="signin-signup">
+        <el-form label-width="100px" class="form sign-in-form">
+          <el-form-item label="邮箱" prop="email">
+            <el-input placeholder="Enter Email..."></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="password">
+            <el-input
+              type="password"
+              placeholder="Enter PassWord..."
+            ></el-input>
+          </el-form-item>
+
+          <el-form-item>
+            <el-button type="primary" class="submit-btn">提交</el-button>
+          </el-form-item>
+          <!-- 找回密码 -->
+          <div class="tiparea">
+            <p>忘记密码？ <a href="/">立即找回</a></p>
+          </div>
+        </el-form>
+      </div>
+    </div>
+
     <div class="panels-container">
       <div class="panel left-panel">
         <div class="content">
@@ -59,10 +84,10 @@ export default {
 
 .signin-signup {
   position: absolute;
-  top: 50%;
+  top: 40%;
   transform: translate(-50%, -50%);
   left: 75%;
-  width: 44%;
+  width: 40%;
   transition: 1s 0.7s ease-in-out;
   display: grid;
   grid-template-columns: 1fr;
@@ -391,7 +416,9 @@ form.sign-up-form {
   z-index: 1;
 }
 
+
 /* register */
+
 .registerForm {
   margin-top: 20px;
   background-color: #fff;
@@ -400,7 +427,7 @@ form.sign-up-form {
   box-shadow: 0px 5px 10px #cccc;
 }
 
-.submit_btn {
+.submit-btn {
   width: 100%;
 }
 </style>>
