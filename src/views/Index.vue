@@ -1,5 +1,6 @@
+
 <template>
-  <div class="index">首页</div>
+  <el-input v-model="input" placeholder="请输入内容"></el-input>
 </template>
 
 
@@ -7,9 +8,19 @@
 export default {
   name: "Index",
   components: {},
-}
+  data() {
+    return {
+      input: ''
+    }
+  }
+};
+
+
 </script>
 
-<style scoped>
-
+<style>
 </style>
+
+
+
+

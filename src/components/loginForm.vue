@@ -58,7 +58,7 @@ export default {
       // console.log(ctx)
       ctx.$refs[formName].validate((valid: boolean) => {
         if (valid) {
-          alert("submit!");
+          
         } else {
           console.log("error submit!!");
           return false;

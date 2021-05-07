@@ -48,7 +48,7 @@
 <script lang="ts">
 import { getCurrentInstance } from "vue";
 import { registerUser, registerRules } from "../utils/registerValidators";
-// import axios from 'axios' // 仅限在当前组件使用
+
 export default {
   props: {
     registerUser: {
