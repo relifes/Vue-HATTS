@@ -1,11 +1,11 @@
-import { ref, getCurrentInstance } from "vue";
+import { ref } from "vue";
 
 interface User {
   email: string,
   password: string
 }
 
-interface Rules {
+interface loginRules {
   email: {
     type: string;
     message: string;
@@ -33,7 +33,7 @@ export const loginUser = ref<User>({
 });
 
 
-export const rules = ref<Rules>({
+export const loginRules = ref<loginRules>({
   email: [
     {
       type: "email",

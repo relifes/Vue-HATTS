@@ -4,7 +4,7 @@
     <div class="forms-container">
       <div class="signin-signup">
         <!-- 登录 -->
-        <LoginForm :loginUser="loginUser" :rules="rules" />
+        <LoginForm :loginUser="loginUser" :loginRules="loginRules" />
 
         <!-- 注册 -->
         <RegisterForm
@@ -28,7 +28,7 @@
 
       <div class="panel right-panel">
         <div class="content">
-          <h2>Coding the World, Coding the future</h2>
+          <h2>Coding the World, Coding the Future</h2>
           <h3>知行统一，博厚悠远</h3>
           <button @click="signUpMode = !signUpMode" class="btn transparent">
             登录
@@ -42,27 +42,19 @@
 
 
 <script lang="ts">
-import { ref, getCurrentInstance } from "vue";
-import { loginUser, rules } from "@/utils/loginVailDator";
-import { registerUser, registerRules } from "../utils/registerValidators";
+import { ref } from "vue";
+
 import LoginForm from "@/components/loginForm.vue";
 import RegisterForm from "@/components/RegisterForm.vue";
+
 
 export default {
   name: "LoginRegister",
   components: { LoginForm, RegisterForm },
   setup() {
     // @ts-ignore
-    const { ctx } = getCurrentInstance();
     const signUpMode = ref<boolean>(false);
-
-    return {
-      signUpMode,
-      loginUser,
-      rules,
-      registerUser,
-      registerRules,
-    };
+    return { signUpMode };
   },
 };
 </script>

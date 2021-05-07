@@ -1,10 +1,9 @@
-import { rules } from '@/utils/loginVailDator';
 <template>
   <el-form
     status-icon
     ref="loginForm"
     :model="loginUser"
-    :rules="rules"
+    :rules="loginRules"
     label-width="100px"
     class="loginForm sign-in-form"
   >
@@ -37,15 +36,16 @@ import { rules } from '@/utils/loginVailDator';
   </el-form>
 </template>
 <script lang="ts">
-import { ref, getCurrentInstance } from "vue";
-import LoginForm from '@/components/loginForm.vue';
+import { getCurrentInstance } from "vue";
+import { loginUser, loginRules } from "@/utils/loginVailDator";
+
 export default {
   props: {
     loginUser: {
       type: Object,
       required: true,
     },
-    rules: {
+    loginRules: {
       type: Object,
       required: true,
     },
@@ -65,7 +65,11 @@ export default {
         }
       });
     };
-    return { handleLogin };
+    return { 
+      handleLogin, 
+      loginUser, 
+      loginRules
+    };
   },
 };
 </script>

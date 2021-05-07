@@ -8,14 +8,6 @@ interface RegisterUser {
   role: string;
 }
 
-export const registerUser = ref<RegisterUser>({
-  name: "",
-  email: "",
-  password: "",
-  password2: "",
-  role: "",
-});
-
 interface RegisterRules {
   name: ({
     message: string;
@@ -59,6 +51,15 @@ interface RegisterRules {
     trigger: string;
   })[];
 }
+
+export const registerUser = ref<RegisterUser>({
+  name: "",
+  email: "",
+  password: "",
+  password2: "",
+  role: "",
+});
+
 
 const validatePass2 = (rule: RegisterRules, value: string, callback: any) => {
   if (value === "") {

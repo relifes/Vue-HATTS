@@ -1,5 +1,6 @@
 <template>
   <el-form
+    status-icon
     ref="registerForm"
     :model="registerUser"
     :rules="registerRules"
@@ -33,14 +34,6 @@
       ></el-input>
     </el-form-item>
 
-    <el-form-item label="选择身份">
-      <el-select v-model="registerUser.role" placeholder="请选择身份">
-        <el-option label="管理员" value="admin"></el-option>
-        <el-option label="用户" value="user"></el-option>
-        <el-option label="游客" value="visitor"></el-option>
-      </el-select>
-    </el-form-item>
-
     <el-form-item>
       <el-button
         @click="handleRegister('registerForm')"
@@ -53,7 +46,8 @@
 </template>
 
 <script lang="ts">
-import { ref, getCurrentInstance } from "vue";
+import { getCurrentInstance } from "vue";
+import { registerUser, registerRules } from "../utils/registerValidators";
 // import axios from 'axios' // 仅限在当前组件使用
 export default {
   props: {
@@ -81,7 +75,7 @@ export default {
       });
     };
 
-    return { handleRegister };
+    return { handleRegister, registerUser, registerRules };
   },
 };
 </script>
