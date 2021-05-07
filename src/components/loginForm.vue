@@ -65,9 +65,9 @@ export default {
         }
       });
     };
-    return { 
-      handleLogin, 
-      loginUser, 
+    return {
+      handleLogin,
+      loginUser,
       loginRules
     };
   },
