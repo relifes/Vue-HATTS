@@ -38,6 +38,8 @@
 <script lang="ts">
 import { getCurrentInstance } from "vue";
 import { loginUser, loginRules } from "@/utils/loginVailDator";
+import axios from "../http";
+import { useRouter } from "vue-router";
 
 export default {
   props: {
@@ -53,12 +55,32 @@ export default {
   setup() {
     // @ts-ignore
     const { ctx } = getCurrentInstance();
+    const routers = useRouter();
     // 登录方法
     const handleLogin = (formName: string) => {
       // console.log(ctx)
       ctx.$refs[formName].validate((valid: boolean) => {
         if (valid) {
-          
+          console.log(loginUser.value);
+          const api = "/api/auth/login";
+          let param = new URLSearchParams();
+          param.append("email", loginUser.value.email);
+          param.append("password", loginUser.value.password);
+          ctx
+            .$axios({
+              method: "post",
+              url: api,
+              data: param,
+            })
+            .then((res: any) => {
+              // 注册成功
+              ctx.$message({
+                message: "Register Success",
+              });
+              // 路由跳转
+              routers.push("/");
+            });
+          // ctx.$axios.post(api, props.registerUser)
         } else {
           console.log("error submit!!");
           return false;
@@ -68,7 +90,7 @@ export default {
     return {
       handleLogin,
       loginUser,
-      loginRules
+      loginRules,
     };
   },
 };

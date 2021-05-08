@@ -48,6 +48,8 @@
 <script lang="ts">
 import { getCurrentInstance } from "vue";
 import { registerUser, registerRules } from "../utils/registerValidators";
+import axios from "../http";
+import { useRouter } from "vue-router";
 
 export default {
   props: {
@@ -63,11 +65,33 @@ export default {
   setup() {
     // @ts-ignore
     const { ctx } = getCurrentInstance();
+    const routers = useRouter();
 
     const handleRegister = (formName: string) => {
       ctx.$refs[formName].validate((valid: boolean) => {
         if (valid) {
-          alert("submit!");
+          console.log(registerUser.value);
+          const api = "/api/auth/register";
+          let param = new URLSearchParams();
+          param.append("name", registerUser.value.name);
+          param.append("email", registerUser.value.email);
+          param.append("password", registerUser.value.password);
+
+          ctx
+            .$axios({
+              method: "post",
+              url: api,
+              data: param,
+            })
+            .then((res: any) => {
+              // 注册成功
+              ctx.$message({
+                message: "Register Success",
+              });
+              // 路由跳转
+              routers.push("/");
+            });
+          // ctx.$axios.post(api, props.registerUser)
         } else {
           console.log("error submit!!");
           return false;

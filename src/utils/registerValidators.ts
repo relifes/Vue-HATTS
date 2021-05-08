@@ -5,7 +5,6 @@ interface RegisterUser {
   email: string;
   password: string;
   password2: string;
-  role: string;
 }
 
 interface RegisterRules {
@@ -57,7 +56,6 @@ export const registerUser = ref<RegisterUser>({
   email: "",
   password: "",
   password2: "",
-  role: "",
 });
 
 
